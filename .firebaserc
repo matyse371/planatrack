@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "body-planet-machine"
+  },
+  "targets": {
+    "body-planet-machine": {
+      "hosting": {
+        "app": [
+          "body-planet-machine"
+        ]
+      }
+    }
+  }
+}

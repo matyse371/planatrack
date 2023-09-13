@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      disabled="true"
+      labelPlacement="stacked"
+      label="This Account"
+      [(ngModel)]="postedBy"
+      placeholder="Posted By"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select
+    labelPlacement="stacked"
+      label="Assigned To"
+      placeholder="Select One"
+      [(ngModel)]="assignedTo"
+    >
+      <ion-select-option
+        *ngFor="let user of users$ | async"
+        value="{{ user.Name }}"
+        >{{ user.Name }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      labelPlacement="stacked"
+      label="Enter The Title"
+      [(ngModel)]="title"
+      placeholder="Title"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+
+    <ion-textarea labelPlacement="stacked" label="Enter The Description" [(ngModel)]="description"
+    placeholder="Description"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-datetime [(ngModel)]="datePosted" ></ion-datetime>
+  </ion-item>
+</ion-content>

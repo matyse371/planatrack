@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" [collapse]="true">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Login </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--For apple-->
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start" [collapse]="true">
+        <ion-back-button defaultHref="/menu"></ion-back-button>
+      </ion-buttons>
+      <ion-title >Login </ion-title>
+
+
+      <!--
+      <ion-buttons slot="primary">
+        <ion-button id="open-modal" (click)="openModal()">
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+-->
+
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-item>
+    <ion-input label="Email input" type="email" placeholder="email@domain.com" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password input" type="password" value="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+
+
+      <ion-button expand="block" color="primary" fill="solid" (click)="login()">Login</ion-button>
+
+
+
+
+
+
+
+</ion-content>

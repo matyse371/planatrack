@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+
+
+
+
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +13,10 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController, authService: AuthService) {}
+
+
+
+
 
 }
