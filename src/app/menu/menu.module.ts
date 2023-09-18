@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 
 
 import { MenuComponentRoutingModule } from './menu-routing.module';
+import { SignupModule } from './signup/signup.module';
+import { MenuListModule } from './menu-list/menu-list.module';
+
 
 
 
@@ -17,7 +20,9 @@ import { MenuComponentRoutingModule } from './menu-routing.module';
     IonicModule,
     MenuComponentRoutingModule,
     LoginModule,
-    FormsModule
+    SignupModule,
+    FormsModule,
+    MenuListModule
   ]
 })
 export class MenuModule { }

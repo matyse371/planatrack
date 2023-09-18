@@ -1,40 +1,69 @@
-<ion-content color="light">
-  <ion-searchbar animated="true" placeholder="Search Tickets"></ion-searchbar>
+<ion-content color="light" class="ion-padding">
+
+
+  <ion-segment value="open" [scrollable]="true" [(ngModel)]="statusString" (ionChange)="statusTickets($event)">
+
+    <ion-segment-button value="">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="open">
+      <ion-label>Open</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="inProgress">
+      <ion-label>In Progress</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="closed">
+      <ion-label>Closed</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+
+  <ion-searchbar
+    animated="true"
+    placeholder="Search Tickets"
+    (ionChange)="searchTickets($event)"
+    [(ngModel)]="filterString"
+  ></ion-searchbar>
 
   <ion-list [inset]="true">
-    <ion-item *ngFor="let ticket of tickets$ | async" href="tickets/{{ticket.id}}">
+    <ion-item
+      *ngFor="let ticket of filterTickets$ | async"
+      href="tickets/{{ ticket.id }}"
+    >
+
+    <!--
       <ion-thumbnail slot="start">
         <img
           alt="Silhouette of mountains"
           src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
         />
       </ion-thumbnail>
+      -->
+
       <ion-label class="ion-text-wrap">
-        <h1>{{ ticket.title }}</h1>
-        <p>
+        <h1 class="title ">{{ ticket.title }}</h1>
+        <p class="description ion-padding">
           {{ ticket.description }}
         </p>
-        <p> <b>Posted By</b> {{ticket.postedBy}} </p>
-        <p>Assigned To: {{ticket.assignedTo}}</p>
-        <p>{{formatDate(ticket.datePosted)}}</p>
+
+        <p><b>Posted By: </b> {{ ticket.postedBy }}</p>
+        <p><b> Assigned To: </b> {{ ticket.assignedTo }}</p>
+        <p><b>Date Posted: </b>{{ticket.timestamp.toDate() | date:'MM-dd-yyyy h:mma' }}</p>
+
+        <!--<p><b>Date Due: </b>{{ticket.timestamp.toDate() | date:'MM-dd-yyyy h:mm:ss a' }}</p>-->
+
+
       </ion-label>
     </ion-item>
   </ion-list>
 
-
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
-
     <ion-fab-button (click)="openModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-
-
-
-
-
-
-
-
   </ion-fab>
-
 </ion-content>

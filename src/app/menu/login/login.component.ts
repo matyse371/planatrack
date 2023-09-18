@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   email = '';
   password = '';
@@ -16,6 +18,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.signInWithEmail(this.email, this.password);
-
+    //window.location.reload();
+    setTimeout(() => {
+      this.router.navigate(['/menu']);
+    }, 500);
   }
 }

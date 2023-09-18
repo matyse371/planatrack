@@ -3,21 +3,20 @@
     <ion-buttons slot="start" [collapse]="true">
       <ion-back-button defaultHref="/menu"></ion-back-button>
     </ion-buttons>
-    <ion-title> Login </ion-title>
+    <ion-title> Sign Up </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <!--For apple-->
-<ion-content class="ion-padding">
 
+<ion-content [fullscreen]="true">
   <!--
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-buttons slot="start" [collapse]="true">
         <ion-back-button defaultHref="/menu"></ion-back-button>
       </ion-buttons>
-      <ion-title >Login </ion-title>
-
+      <ion-title>Sign Up </ion-title>
 
 
       <ion-buttons slot="primary">
@@ -26,38 +25,44 @@
         </ion-button>
       </ion-buttons>
 
-
     </ion-toolbar>
   </ion-header>
 -->
 
-<ion-list>
 
   <ion-item>
-    <ion-input label="Email input" type="email" placeholder="email@domain.com" [(ngModel)]="email"></ion-input>
+    <ion-input
+      label="Full Name"
+      type="text"
+      placeholder="John Doe"
+      [(ngModel)]="displayName"
+    ></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Password input" type="password" value="password" [(ngModel)]="password"></ion-input>
+    <ion-input
+      label="Email input"
+      type="email"
+      placeholder="email@domain.com"
+      [(ngModel)]="email"
+    ></ion-input>
   </ion-item>
-
+  <ion-item>
+    <ion-input
+      label="Password input"
+      type="password"
+      value="password"
+      [(ngModel)]="password"
+    ></ion-input>
+  </ion-item>
 
   <ion-item>
-    <ion-button expand="" color="primary" fill="solid" size="default" (click)="login()">Login</ion-button>
-
-
+    <ion-button
+      expand=""
+      color="primary"
+      fill="solid"
+      size="default"
+      (click)="signUp()"
+      >Sign Up</ion-button
+    >
   </ion-item>
-
-</ion-list>
-
-
-
-
-
-
-
-
-
-
-
-
 </ion-content>

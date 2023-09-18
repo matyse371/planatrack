@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterModule, Routes, createUrlTreeFromSnapshot } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { map } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 const routes: Routes = [
   {
@@ -21,7 +23,8 @@ const routes: Routes = [
       },
       {
         path: 'menu',
-        loadChildren: () => import('../menu/menu.module').then(m => m.MenuModule)
+        loadChildren: () => import('../menu/menu.module').then(m => m.MenuModule),
+
       },
       {
         path: '',

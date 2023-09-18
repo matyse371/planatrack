@@ -8,6 +8,7 @@ export interface Ticket {
   assignedTo: string;
   datePosted: string;
   timestamp: any;
+  status: string;
 
 }
 

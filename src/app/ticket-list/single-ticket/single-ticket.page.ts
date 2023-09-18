@@ -10,6 +10,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
@@ -24,6 +25,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SingleTicketPage implements OnInit {
   selectedId: string;
 
+  thisDocument: any;
+
   id: string = '';
   title: string = '';
   description: string = '';
@@ -31,6 +34,7 @@ export class SingleTicketPage implements OnInit {
   assignedTo: string = '';
   datePosted: string = '';
   timestamp: any;
+  status: string = '';
 
   notes$: Observable<Note[]>
   noteText: string = '';
@@ -76,7 +80,9 @@ export class SingleTicketPage implements OnInit {
 
 
 
-       // get a reference to the user-profile collection
+    //handles notes
+
+       // get a reference to the notes collection
        const userProfileCollection = collection(this.firestore, 'tickets/' + this.selectedId + '/notes' );
 
        const q = query(userProfileCollection, orderBy("timestamp", "desc") );
@@ -103,6 +109,7 @@ export class SingleTicketPage implements OnInit {
   async ngOnInit() {
 
     const ticketDoc = doc(this.firestore, 'tickets', this.selectedId);
+    this.thisDocument = ticketDoc;
     const docSnap = await getDoc(ticketDoc);
 
     if (docSnap.exists()) {
@@ -113,6 +120,7 @@ export class SingleTicketPage implements OnInit {
       this.assignedTo = docSnap.get('assignedTo');
       this.datePosted = docSnap.get('datePosted');
       this.timestamp = docSnap.get('timestamp');
+      this.status = docSnap.get('status');
     } else {
       // docSnap.data() will be undefined in this case
       console.log('No such document!');
@@ -126,5 +134,20 @@ export class SingleTicketPage implements OnInit {
       collection(this.firestore, 'tickets/' + this.selectedId + '/notes'),
       { notePostedBy, text, timestamp: serverTimestamp() }
     );
+    this.noteText = '';
   }
+
+
+
+  updateStatus(ev: any) {
+    const stat = ev.detail.value;
+    updateDoc(this.thisDocument, {
+      status: stat
+
+    })
+
+
+  }
+
+
 }

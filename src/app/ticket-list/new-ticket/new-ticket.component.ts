@@ -42,6 +42,15 @@ export class NewTicketComponent implements OnInit {
     const userObject = auth.currentUser?.toJSON();
 
 
+    auth.isAuth().subscribe((authed) => {
+      const loggedIn = authed;
+      console.log(loggedIn);
+
+      if(loggedIn != true) {
+        //this.router.navigate(['/menu/login']);
+      }
+    })
+
 
     if (auth.currentUser?.displayName) {
 
@@ -64,7 +73,8 @@ export class NewTicketComponent implements OnInit {
     description: string = this.description,
     postedBy: string = this.postedBy,
     assignedTo: string = this.assignedTo,
-    datePosted: string = this.datePosted
+    datePosted: string = this.datePosted,
+    status: string = 'open'
   ) {
     addDoc(collection(this.firestore, 'tickets'), <Ticket>{
       title,
@@ -72,7 +82,8 @@ export class NewTicketComponent implements OnInit {
       postedBy,
       assignedTo,
       datePosted,
-      timestamp: serverTimestamp()
+      timestamp: serverTimestamp(),
+      status
     });
 
     return this.modalCtrl.dismiss(this.postedBy, 'confirm');

@@ -34,16 +34,20 @@
 
     <ion-card-content>
       <ion-list>
+
+
         <ion-item>
           <ion-select
             aria-label="Favorite Fruit"
-            value="apple"
+            value="{{status}}"
             label="Status"
             label-placement="floating"
+            interface="action-sheet"
+            (ionChange)="updateStatus($event)"
           >
-            <ion-select-option value="apple">Open</ion-select-option>
-            <ion-select-option value="banana">In Progress</ion-select-option>
-            <ion-select-option value="orange">Closed</ion-select-option>
+            <ion-select-option value="open">Open</ion-select-option>
+            <ion-select-option value="inProgress">In Progress</ion-select-option>
+            <ion-select-option value="closed">Closed</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -76,6 +80,7 @@
             <p></p>
             <h3>{{note.notePostedBy}}</h3>
             <p>{{note.text}}</p>
+            <p>{{note.timestamp.toDate() | date:'MM-dd-yyyy h:mma' }}</p>
           </ion-label>
         </ion-item>
       </ion-list>
