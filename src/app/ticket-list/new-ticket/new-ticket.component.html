@@ -10,46 +10,69 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-input
-      disabled="true"
-      labelPlacement="stacked"
-      label="This Account"
-      [(ngModel)]="postedBy"
-      placeholder="Posted By"
-    ></ion-input>
-  </ion-item>
+<ion-content class="ion-padding" color="light">
+  <ion-list inset="true">
+    <ion-item>
+      <ion-input
+        disabled="true"
+        labelPlacement="stacked"
+        label="This Account"
+        [(ngModel)]="postedBy"
+        placeholder="Posted By"
+      ></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-select
-    labelPlacement="stacked"
-      label="Assigned To"
-      placeholder="Select One"
-      [(ngModel)]="assignedTo"
-    >
-      <ion-select-option
-        *ngFor="let user of users$ | async"
-        value="{{ user.Name }}"
-        >{{ user.Name }}</ion-select-option
+    <ion-item>
+      <ion-select
+        labelPlacement="stacked"
+        label="Assigned To"
+        placeholder="Select One"
+        [(ngModel)]="assignedTo"
       >
-    </ion-select>
-  </ion-item>
+        <ion-select-option
+          *ngFor="let user of users$ | async"
+          value="{{ user.Name }}"
+          >{{ user.Name }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-input
-      labelPlacement="stacked"
-      label="Enter The Title"
-      [(ngModel)]="title"
-      placeholder="Title"
-    ></ion-input>
-  </ion-item>
-  <ion-item>
+    <ion-item>
+      <ion-input
+        labelPlacement="stacked"
+        label="Enter The Title"
+        [(ngModel)]="title"
+        placeholder="Title"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea
+        labelPlacement="stacked"
+        label="Enter The Description"
+        [(ngModel)]="description"
+        placeholder="Description"
+      ></ion-textarea>
+    </ion-item>
 
-    <ion-textarea labelPlacement="stacked" label="Enter The Description" [(ngModel)]="description"
-    placeholder="Description"></ion-textarea>
-  </ion-item>
-  <ion-item>
-    <ion-datetime [(ngModel)]="datePosted" ></ion-datetime>
-  </ion-item>
+
+        <ion-item slot="header" lines="inset">
+          <ion-label>Due</ion-label>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        </ion-item>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              slot="content"
+              presentation="date-time"
+              name="datetime"
+              [(ngModel)]="datePosted"
+              value="datePosted"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+
+
+
+  </ion-list>
 </ion-content>

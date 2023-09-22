@@ -24,7 +24,16 @@ export class NewTicketComponent implements OnInit {
   assignedTo: string = '';
   title: string = '';
   description: string = '';
-  datePosted: string = Date.now().toString();
+  #datePosted: string = new Date(Date.now()).toISOString();
+
+  get datePosted(): string {
+    console.log(this.#datePosted);
+    return this.#datePosted
+  };
+  set datePosted(val:string) {
+    this.#datePosted = val;
+    console.log(this.datePosted);
+  };
 
   private firestore: Firestore = inject(Firestore);
   users$: Observable<User[]>
@@ -64,7 +73,7 @@ export class NewTicketComponent implements OnInit {
 
   //dismiss modal and clear all data
   cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+    return this.modalCtrl.dismiss();
   }
 
   //This will submit the ticket with all data currently on the list
@@ -86,6 +95,6 @@ export class NewTicketComponent implements OnInit {
       status
     });
 
-    return this.modalCtrl.dismiss(this.postedBy, 'confirm');
+    return this.modalCtrl.dismiss();
   }
 }

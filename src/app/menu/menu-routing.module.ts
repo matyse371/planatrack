@@ -13,6 +13,7 @@ const routes: Routes = [
     component: MenuComponent,
 
 
+    /*
     canActivate: [
       (next: ActivatedRouteSnapshot) => {
         return inject(AuthService)
@@ -23,6 +24,7 @@ const routes: Routes = [
           );
       },
     ]
+    */
 
 
   },

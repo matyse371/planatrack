@@ -31,6 +31,8 @@ export class TicketListComponent implements OnInit {
   subbedTickets: Ticket[] = [];
   filterTickets$?: Observable<Ticket[]>;
 
+  presentingElement: any = document.querySelector('app-tabs.ion-page');
+
   filterString: string = '';
   statusString: string = 'open';
 
@@ -74,6 +76,9 @@ export class TicketListComponent implements OnInit {
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: NewTicketComponent,
+      animated: true,
+      presentingElement: this.presentingElement
+
     });
     modal.present();
   }

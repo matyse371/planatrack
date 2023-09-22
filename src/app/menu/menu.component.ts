@@ -15,7 +15,11 @@ import { Subscription } from 'rxjs';
 export class MenuComponent  implements OnInit {
 
 
-  constructor(private modalCtrl: ModalController, private authservice: AuthService) {}
+
+  constructor(private modalCtrl: ModalController, private authservice: AuthService) {
+
+
+  }
 
   ngOnInit() {}
 

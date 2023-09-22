@@ -13,19 +13,19 @@
   -->
 
   <ion-list inset="true">
-    <ion-item button="true" (click)="goToLink('/menu/login')" routerDirection="forward">
+    <ion-item button="true"  href="/menu/login"routerDirection="forward">
       <ion-label>
         <h2>Login</h2>
       </ion-label>
     </ion-item>
 
-    <ion-item button="true" (click)="goToLink('/menu/signup')" routerDirection="forward">
+    <ion-item button="true" *ngIf="!loggedIn" href="/menu/signup" routerDirection="forward">
       <ion-label>
         <h2>Sign Up</h2>
       </ion-label>
     </ion-item>
 
-    <ion-item button="true" (click)="signOut()">
+    <ion-item button="true" (click)="signOut()" *ngIf="loggedIn">
       <ion-label>
         <h2>Logout</h2>
       </ion-label>

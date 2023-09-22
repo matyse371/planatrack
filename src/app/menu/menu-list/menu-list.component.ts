@@ -11,7 +11,7 @@ export class MenuListComponent implements OnInit {
 
 
 
-  private loggedIn?: Boolean;
+  public loggedIn?: Boolean;
 
   constructor(private authservice: AuthService, private router: Router) {
 
@@ -37,7 +37,10 @@ export class MenuListComponent implements OnInit {
 
   signOut() {
     this.authservice.logout();
-    this.router.navigate(['/menu/login']);
+
+    setTimeout(() => {
+      this.router.navigate(['/menu/login']);
+    }, 500);
   }
 
   goToLink(link: string) {
